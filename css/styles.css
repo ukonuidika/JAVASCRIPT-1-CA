@@ -26,8 +26,7 @@ nav ul {
 }
 
 footer::before, footer::after {
-    content: '/';
+    font-weight: bold;content: '/';
     color: #D40404;
     font-size: 30px;
-    font-weight: bold;
 }
