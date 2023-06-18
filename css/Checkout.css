@@ -29,4 +29,5 @@ footer::before, footer::after {
     font-weight: bold;content: '/';
     color: #D40404;
     font-size: 30px;
+    font-weight: bold;
 }
