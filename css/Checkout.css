@@ -1,0 +1,32 @@
+body {
+    font-family: 'Open Sans', Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h1, h2, h3{
+    font-family: 'Franklin Gothic medium', 'Arial Narrow', Arial, Helvetica, sans-serif;
+    color: #D40404;
+}
+
+nav li {
+    display: inline-block;
+}
+
+nav a {
+    color: #000;
+    text-decoration: none;
+    padding: 10px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+nav ul {
+    padding: 0px;
+}
+
+footer::before, footer::after {
+    font-weight: bold;content: '/';
+    color: #D40404;
+    font-size: 30px;
+}
