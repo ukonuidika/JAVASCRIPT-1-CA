@@ -37,4 +37,16 @@ footer::before, footer::after {
     font-weight: bold;
 }
 
-img {width: 100%;}
+img {
+    width: 100%;
+
+}
+
+p {
+    text-align: justify;
+    padding: 5px;
+}
+
+td img {
+    width: 100%;
+}
