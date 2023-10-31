@@ -4,23 +4,28 @@ body {
 
 h1{
     font-family: 'Franklin Gothic medium', 'Arial Narrow', Arial, Helvetica, sans-serif;
-    color: #D40404;
+    color: #d404cc8a;
+    text-align: center;
+    font-size: 50px;
+    font: weight 800px;
 }
 
 nav li {
     display: inline-block;
+    padding: 2em;
 }
 
-nav a {
+nav li a {
     color: #000;
     text-decoration: none;
     padding: 10px;
 }
 
-nav a:hover {
-    text-decoration: underline;
+nav li a:hover {
+    text-decoration: none;
+    background: gray;
+    color:#fff;
 }
-
 nav ul {
     padding: 0px;
 }
@@ -31,3 +36,5 @@ footer::before, footer::after {
     font-size: 30px;
     font-weight: bold;
 }
+
+img {width: 100%;}
