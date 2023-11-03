@@ -51,3 +51,10 @@ p {
 td img {
     width: 100%;
 }
+
+.btn {
+    color: #fff;
+    background: #024d04;
+    font-size: large;
+    border-radius: 30%;
+}
