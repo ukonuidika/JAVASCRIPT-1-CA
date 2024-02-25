@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+</head>
+<body>
+    <h1>Product Details</h1>
+    <div id="productDetails"></div>
+
+    <script>
+    	document.addEventListener('DOMContentLoaded', function () {
+    // Get product ID from query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('id');
+
+    // Fetch product details based on product ID
+    fetch(`https://api.noroff.dev/api/v1/rainy-days/${productId}`)
+        .then(response => response.json())
+        .then(product => {
+            // Display product details
+            const productDetailsDiv = document.getElementById('productDetails');
+            productDetailsDiv.innerHTML = `
+                <img src="${product.image}" alt="${product.title}" style="width: 200px; height: auto;">
+                <h2>${product.title}</h2>
+                <p>${product.description}</p>
+                <p>Price: ${product.price}</p>
+                <p>Color: ${product.baseColor}</p>
+                <p>Size: ${product.sizes}</p>
+                <p>Gender: ${product.gender}</p>
+                <p>Availability: ${product.onSale}</p>
+                <p>Favorite: ${product.favorite}</p>
+                <p>Tags: ${product.tags}</p>
+
+                
+            `;
+        })
+        .catch(error => console.error('Error fetching product details:', error));
+});
+
+
+    </script>
+</body>
+</html>

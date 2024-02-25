@@ -183,3 +183,23 @@ body {margin:0;font-family:Arial}
     background: #0e0d0d;
     color: #fff;
 }
+
+table {
+  width: 100%;
+}
+
+.price {
+padding: 2em;
+}
+
+.cart {
+  padding: 2em;
+}
+
+.cartModal {
+  display: none;
+}
+
+.confirmationModal {
+  display: none;
+}

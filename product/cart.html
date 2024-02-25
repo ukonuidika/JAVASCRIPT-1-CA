@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+</head>
+<body>
+    <h1>Cart</h1>
+    <div id="cartProducts"></div>
+     <button onclick="clearCart()">Clear Cart</button>
+     <button onclick="proceedToCheckout()">Proceed to Checkout</button>
+
+    <script>
+        // Function to fetch product details from the API
+        function fetchProduct(productId) {
+            return fetch(`https://api.noroff.dev/api/v1/rainy-days/${productId}`)
+                .then(response => response.json());
+        }
+
+        // Retrieve the cart items from localStorage
+        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+        // Fetch details for each product in the cart
+        Promise.all(cartItems.map(productId => fetchProduct(productId)))
+            .then(products => {
+                // Display product details
+                const cartProductsDiv = document.getElementById('cartProducts');
+                products.forEach(product => {
+                    const productDiv = document.createElement('div');
+                    productDiv.textContent = `<img src="${product.image}" alt="${product.title}" style="width: 100px; height: auto;">,Product ID: ${product.id}, Title: ${product.title}, Price: ${product.price}`;
+                    cartProductsDiv.appendChild(productDiv);
+                });
+            })
+            .catch(error => console.error('Error fetching cart products:', error));
+            // Function to remove a product from the cart
+function removeFromCart(productId) {
+    // Retrieve the current cart items from localStorage
+    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    
+    // Remove the product ID from the cart items array
+    cartItems = cartItems.filter(item => item !== productId);
+    
+    // Save the updated cart items array back to localStorage
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    
+    // Refresh the cart display
+    displayCart();
+}
+
+// Function to clear the entire cart
+function clearCart() {
+    // Clear the cart items from localStorage
+    localStorage.removeItem('cartItems');
+    
+    // Refresh the cart display
+    displayCart();
+}
+
+// Function to fetch product details from the API
+function fetchProduct(productId) {
+    return fetch(`https://api.noroff.dev/api/v1/rainy-days/${productId}`)
+        .then(response => response.json());
+}
+
+// Function to display cart items
+function displayCart() {
+    // Retrieve the cart items from localStorage
+    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+    // Fetch details for each product in the cart
+    Promise.all(cartItems.map(productId => fetchProduct(productId)))
+        .then(products => {
+            // Clear previous cart display
+            const cartProductsDiv = document.getElementById('cartProducts');
+            cartProductsDiv.innerHTML = '';
+
+            // Display product details
+            products.forEach(product => {
+                const productDiv = document.createElement('div');
+productDiv.innerHTML = `<img src="${product.image}" alt="${product.title}" style="width: 100px; height: auto;">,<p> Product ID: ${product.id}, <p>Product Name: ${product.title},<p> Price: $ ${product.price}`;
+
+                
+                // Add remove button
+                const removeButton = document.createElement('button');
+                removeButton.textContent = 'Remove';
+                removeButton.addEventListener('click', () => removeFromCart(product.id));
+                
+                productDiv.appendChild(removeButton);
+                cartProductsDiv.appendChild(productDiv);
+            });
+        })
+        .catch(error => console.error('Error fetching cart products:', error));
+}
+
+// Call displayCart initially to show cart contents
+displayCart();
+ 
+    </script>
+    <script>
+      // Function to redirect to checkout page
+        function proceedToCheckout() {
+            // Ask for confirmation before proceeding
+            if (confirm("Are you sure you want to proceed to checkout?")) {
+                window.location.href = '../checkout';
+            }
+        }
+      </script>
+</html>
+
+

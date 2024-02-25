@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Products page" content="This are our Products">
+    <title>Products</title>
+    <link href="../css/styles.css" rel="stylesheet">
+</head>
+<body>
+        
+          <img src="../images/RainyDays_Logo (1).png" alt="LOGO for My Rainy Day site" class="logo">
+          <div class="topnav" id="myTopnav">
+          <a href="../index.html" class="active">Home</a>
+          <a href="../about-us.html">about Us</a>
+          <a href="index.html">products</a>
+          <a href="cart.html">Cart</a>
+          <a href="../contact.html">contact</a>
+          <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+        </div>
+
+         <script>
+        function myFunction() {
+          var x = document.getElementById("myTopnav");
+          if (x.className === "topnav") {
+            x.className += " responsive";
+          } else {
+            x.className = "topnav";
+          }
+
+        }
+        </script>
+        
+    <main>
+        <h1>PRODUCTS</h1>
+        <a href="filter.html">Filter Products</a>
+        <table id="productTable" border = "1">
+        <tbody id="productTableBody"></tbody>
+        </table>
+  
+      <div id="cart"></div>
+   <script src="script.js"></script>
+  
+
+                
+
+    </main>
+    <center>    <footer class="footer">
+      copyright &COPY; Rainy Days
+  </footer>
+</center>
+</body>
+</html>

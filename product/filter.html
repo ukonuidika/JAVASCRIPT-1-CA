@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Filtered Products</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+  <main>
+    <h1>Filtered Products</h1>
+    <div>
+      <label for="gender">Filter By Gender:</label>
+      <select id="gender" onchange="filterProducts()">
+        <option value="All">All</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+    </div>
+    <table border="1" id="productTable">
+      <tbody id="productTableBody"></tbody>
+    </table>
+
+    <script>
+      let allProducts; // Store all products initially
+
+      // Fetch all products from API
+      fetch('https://api.noroff.dev/api/v1/rainy-days')
+        .then(response => response.json())
+        .then(data => {
+          if (Array.isArray(data)) {
+            allProducts = data; // Save all products for filtering
+            // Render all products in the table
+            renderProducts(allProducts);
+          }
+        })
+        .catch(error => console.error('Error fetching products:', error));
+
+      function renderProducts(products) {
+        const tableBody = document.getElementById('productTableBody');
+        tableBody.innerHTML = ''; // Clear the existing table content
+
+        let row;
+
+        products.forEach((product, index) => {
+          if (index % 2 === 0) {
+            row = document.createElement('tr');
+            tableBody.appendChild(row);
+          }
+
+          const cell = document.createElement('td');
+          cell.innerHTML = `
+            <td>
+              <center>
+                <img src="${product.image}" alt="${product.title}" style="width: 100px; height: auto;">
+                <p>
+                  <center>
+                    <a href="product_details.html?id=${product.id}">${product.title}</a>
+                  </center>
+                </p>
+                <center>
+                  <strike>$${product.price}</strike>
+                  <span class='price'>$${product.discountedPrice}</span>
+                  <span class='cart'>
+                    <button class="addToCartButton" onclick="addToCart('${product.id}')">
+                      Add To Cart
+                    </button>
+                  </span>
+                </center>
+              </center>
+            </td>`;
+          row.appendChild(cell);
+        });
+      }
+
+      function filterProducts() {
+        const gender = document.getElementById('gender').value;
+
+        // Filter products based on the selected gender or display all products when 'All' is selected
+        const filteredProducts = (gender === 'All') ?
+          allProducts :
+          allProducts.filter(product => product.gender === gender);
+
+        // Render filtered products in the table
+        renderProducts(filteredProducts);
+      }
+
+      function addToCart(productId) {
+  // Retrieve the current cart items from localStorage
+  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+  // Add the new product ID to the cart items array
+  cartItems.push(productId);
+
+  // Save the updated cart items array back to localStorage
+  localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+  // Alert the user that the product has been added to the cart (optional)
+  alert(`Product with ID ${productId} added to cart`);
+
+  // Redirect the user to the cart page
+  window.location.href = 'cart.html';
+}
+
+    </script>
+  </main>
+  <footer class="footer">
+    &copy; 2022 Filtered Products
+  </footer>
+</body>
+
+</html>
