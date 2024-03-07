@@ -7,7 +7,7 @@ fetch('https://api.noroff.dev/api/v1/rainy-days')
       renderProducts(data);
     }
   })
-  .catch(error => console.error('Error fetching products:', error));
+  .catch(error => console.error('Error fetching products. Details:', error.message || error));
 
 function renderProducts(products) {
   const tableBody = document.getElementById('productTableBody');
@@ -26,7 +26,7 @@ function renderProducts(products) {
           <img src="${product.image}" alt="${product.title}" style="width: 100px; height: auto;">
           <p>
             <center>
-              <a href="product_details.html?id=${product.id}">${product.title}</a>
+              <a href="product/product_details.html?id=${product.id}">${product.title}</a>
             </center>
           </p>
           <center>

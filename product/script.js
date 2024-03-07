@@ -7,8 +7,8 @@ fetch('https://api.noroff.dev/api/v1/rainy-days')
       renderProducts(data);
     }
   })
-  .catch(error => console.error('Error fetching products:', error));
-
+  .catch(error => console.error('Error fetching products. Details:', error.message || error));
+  
 function renderProducts(products) {
   const tableBody = document.getElementById('productTableBody');
   let row;
