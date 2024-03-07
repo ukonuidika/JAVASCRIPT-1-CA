@@ -2,6 +2,24 @@ body {
     font-family: 'Open Sans', Verdana, Geneva, Tahoma, sans-serif;
 }
 
+/* Add your styles for the preloader here */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+#loader {
+  font-size: 20px;
+}
+
 h1{
     font-family: 'Franklin Gothic medium', 'Arial Narrow', Arial, Helvetica, sans-serif;
     color: #d404cc8a;
