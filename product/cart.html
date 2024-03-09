@@ -4,15 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart</title>
+    <link href="../css/styles.css" rel="stylesheet">
 </head>
 <body>
+
+    <div id="loaderContainer">
+        <div id="loader"></div>
+        <p id="loadingMessage">Loading...</p>
+      </div>
+      <div id="pageContent" style="display: none;">
+    
     <h1>Cart</h1>
     <div id="cartProducts"></div>
     <p>Total Price: $<span id="totalPrice"></span></p>
     <button onclick="clearCart()">Clear Cart</button>
     <button onclick="proceedToCheckout()">Proceed to Checkout</button>
+      </div>
 
     <script>
+        
+        // function to show loading indicator
+function showLoader() {
+  document.getElementById('loaderContainer').style.display = 'block';
+  
+}
+
+function hideLoader() {
+  document.getElementById('loaderContainer').style.display = 'none';
+  document.getElementById('pageContent').style.display = 'block';
+  
+}
+
+showLoader();
+setTimeout(function() {
+  hideLoader();
+}, 3000
+
+);
+
         // Function to fetch product details from the API
         function fetchProduct(productId) {
             return fetch(`https://api.noroff.dev/api/v1/rainy-days/${productId}`)
