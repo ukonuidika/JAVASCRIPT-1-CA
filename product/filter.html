@@ -9,6 +9,13 @@
 </head>
 
 <body>
+
+  <div id="loaderContainer">
+    <div id="loader"></div>
+    <p id="loadingMessage">Loading...</p>
+  </div>
+  <div id="pageContent" style="display: none;">
+
   <main>
     <h1>Filtered Products</h1>
     <div>
@@ -24,6 +31,25 @@
     </table>
 
     <script>
+      // function to show loading indicator
+function showLoader() {
+  document.getElementById('loaderContainer').style.display = 'block';
+  
+}
+
+function hideLoader() {
+  document.getElementById('loaderContainer').style.display = 'none';
+  document.getElementById('pageContent').style.display = 'block';
+  
+}
+
+showLoader();
+setTimeout(function() {
+  hideLoader();
+}, 3000
+
+);
+
       let allProducts; // Store all products initially
 
       // Fetch all products from API
@@ -106,6 +132,8 @@
 
     </script>
   </main>
+  </div>
+
   <footer class="footer">
     &copy; 2022 Filtered Products
   </footer>

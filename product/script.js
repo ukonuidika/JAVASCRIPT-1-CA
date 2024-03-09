@@ -1,21 +1,21 @@
-document.addEventListener("DOMContentLoaded", function() {
-  // Show the preloader when the content starts loading
-  const preloader = document.getElementById("preloader");
-  preloader.style.display = "flex"; // Make sure it's set to 'flex' to display it as a flex container
+// function to show loading indicator
+function showLoader() {
+  document.getElementById('loaderContainer').style.display = 'block';
+  
+}
 
-  // Set an artificial delay (in milliseconds) for testing purposes
-  const artificialDelay = 5000; // Adjust this value as needed (e.g., 5000 milliseconds = 5 seconds)
+function hideLoader() {
+  document.getElementById('loaderContainer').style.display = 'none';
+  document.getElementById('pageContent').style.display = 'block';
+  
+}
 
-  // Hide the preloader after the artificial delay
-  setTimeout(function() {
-    preloader.style.display = "none";
-  }, artificialDelay);
+showLoader();
+setTimeout(function() {
+  hideLoader();
+}, 3000
 
-  // Optional: Hide the preloader when the content is fully loaded
-  window.addEventListener("load", function() {
-    preloader.style.display = "none";
-  });
-});
+);
 
 // Fetch products from API
 fetch('https://api.noroff.dev/api/v1/rainy-days')

@@ -1,3 +1,22 @@
+// function to show loading indicator
+function showLoader() {
+  document.getElementById('loaderContainer').style.display = 'block';
+  
+}
+
+function hideLoader() {
+  document.getElementById('loaderContainer').style.display = 'none';
+  document.getElementById('pageContent').style.display = 'block';
+  
+}
+
+showLoader();
+setTimeout(function() {
+  hideLoader();
+}, 3000
+
+);
+
 // Fetch products from API
 fetch('https://api.noroff.dev/api/v1/rainy-days')
   .then(response => response.json())
