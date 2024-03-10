@@ -79,3 +79,4 @@ function addToCart(productId) {
   // Redirect the user to the cart page
   window.location.href = 'product/cart.html';
 }
+
