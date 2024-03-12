@@ -54,15 +54,15 @@ setTimeout(function() {
 
       // Fetch all products from API
       fetch('https://api.noroff.dev/api/v1/rainy-days')
-        .then(response => response.json())
-        .then(data => {
-          if (Array.isArray(data)) {
-            allProducts = data; // Save all products for filtering
-            // Render all products in the table
-            renderProducts(allProducts);
-          }
-        })
-        .catch(error => console.error('Error fetching products:', error));
+      .then(response => response.json())
+      .then(data => {
+        if (Array.isArray(data)) {
+          allProducts = data; // Save all products for filtering
+          // Render all products in the table
+          renderProducts(allProducts);
+        }
+      })
+      .catch(error => console.error('Error fetching products:', error));
 
       function renderProducts(products) {
         const tableBody = document.getElementById('productTableBody');
@@ -78,65 +78,65 @@ setTimeout(function() {
 
           const cell = document.createElement('td');
           cell.innerHTML = `
-            <td>
-              <center>
-                <img src="${product.image}" alt="${product.title}" style="width: 100px; height: auto;">
-                <p>
-                  <center>
-                    <a href="product_details.html?id=${product.id}">${product.title}</a>
-                  </center>
-                </p>
+          <td>
+            <center>
+              <img src="${product.image}" alt="${product.title}" style="width: 100px; height: auto;">
+              <p>
                 <center>
-                  <strike>$${product.price}</strike>
-                  <span class='price'>$${product.discountedPrice}</span>
-                  <span class='cart'>
-                    <button class="addToCartButton" onclick="addToCart('${product.id}')">
-                      Add To Cart
-                    </button>
-                  </span>
-                </center>
-              </center>
-            </td>`;
-          row.appendChild(cell);
-        });
-      }
+                  <a href="product_details.html?id=${product.id}">${product.title}</a>
+                  </center>
+                  </p>
+                  <center>
+                    <strike>$${product.price}</strike>
+                    <span class='price'>$${product.discountedPrice}</span>
+                    <span class='cart'>
+                      <button class="addToCartButton" onclick="addToCart('${product.id}')">
+                        Add To Cart
+                        </button>
+                        </span>
+                        </center>
+                        </center>
+                        </td>`;
+                        row.appendChild(cell);
+                      });
+                    }
+                    
+                    function filterProducts() {
+                      const gender = document.getElementById('gender').value;
+                      
+                      // Filter products based on the selected gender or display all products when 'All' is selected
+                      const filteredProducts = (gender === 'All') ?
+                      allProducts :
+                      allProducts.filter(product => product.gender === gender);
 
-      function filterProducts() {
-        const gender = document.getElementById('gender').value;
+                      // Render filtered products in the table
+                      renderProducts(filteredProducts);
+                    }
 
-        // Filter products based on the selected gender or display all products when 'All' is selected
-        const filteredProducts = (gender === 'All') ?
-          allProducts :
-          allProducts.filter(product => product.gender === gender);
+                    function addToCart(productId) {
+                      // Retrieve the current cart items from localStorage
+                      const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
-        // Render filtered products in the table
-        renderProducts(filteredProducts);
-      }
+                      // Add the new product ID to the cart items array
+                      cartItems.push(productId);
 
-      function addToCart(productId) {
-  // Retrieve the current cart items from localStorage
-  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+                      // Save the updated cart items array back to localStorage
+                      localStorage.setItem('cartItems', JSON.stringify(cartItems));
 
-  // Add the new product ID to the cart items array
-  cartItems.push(productId);
+                      // Alert the user that the product has been added to the cart (optional)
+                      alert(`Product with ID ${productId} added to cart`);
 
-  // Save the updated cart items array back to localStorage
-  localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                      // Redirect the user to the cart page
+                      window.location.href = 'cart.html';
+                    }
+                    
+                    </script>
+                    </main>
+                  </div>
 
-  // Alert the user that the product has been added to the cart (optional)
-  alert(`Product with ID ${productId} added to cart`);
-
-  // Redirect the user to the cart page
-  window.location.href = 'cart.html';
-}
-
-    </script>
-  </main>
-  </div>
-
-  <footer class="footer">
-    &copy; 2022 Filtered Products
-  </footer>
-</body>
-
-</html>
+                  <footer class="footer">
+                    &copy; 2022 Filtered Products
+                  </footer>
+                </body>
+                
+                </html>
